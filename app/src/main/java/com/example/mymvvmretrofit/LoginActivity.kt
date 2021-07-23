@@ -19,7 +19,15 @@ class LoginActivity : AppCompatActivity() {
         val Upassword = "123456"
 
         binding.signin.setOnClickListener {
-            checkvalidate()
+           if (username.text.isEmpty()) {
+                username.error = "plese enter user name"
+            }
+            if (password.text.isEmpty()) {
+                password.error = "please enter user password"
+            }
+            if (!username.text.isEmpty() && !password.text.isEmpty()) {
+                checkvalidate()
+            }
         }
     }
 
@@ -33,6 +41,9 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this,"sucessfull login",Toast.LENGTH_LONG).show()
             val intent=Intent(this,DatePickerActivity::class.java)
             startActivity(intent)
+        }
+         else {
+            Toast.makeText(this,"please check username and password ",Toast.LENGTH_LONG).show()
         }
 
     }
